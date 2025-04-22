@@ -1,7 +1,7 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import navlogo from "../../../../../assets/navlogo.png";
 const Navbar = () => {
   const navItems = [
     "Home",
@@ -15,7 +15,9 @@ const Navbar = () => {
   return (
     <nav className="w-full bg-white px-6 py-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="text-2xl font-bold text-primary">Logo</div>
+        <div className="text-2xl font-bold text-primary">
+          <img src={navlogo} alt="" />
+        </div>
 
         <ul className="hidden md:flex gap-6 text-gray-700 font-medium">
           {navItems.map((item) => (
@@ -55,7 +57,9 @@ const Navbar = () => {
                   <Phone className="w-5 h-5" />
                   <span>+603-1234-5678</span>
                 </div>
-                <Button className="mt-4 w-full">Sign In</Button>
+                <Button className="mt-4 w-full rounded-full bg-primary text-primary">
+                  Sign In
+                </Button>
               </div>
             </SheetContent>
           </Sheet>
