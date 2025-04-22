@@ -50,8 +50,8 @@ const PropertyCard = ({ property }) => {
 
       {/* Card content */}
       <div className="absolute rounded-[8px] bg-[#FFF]  bottom-[22px] left-[22px] right-[22px] p-4 z-10 text-[#10423E]">
-        <h3 className="font-[Roboto] text-[20px] not-italic font-medium leading-[normal]">{title}</h3>
-        <p className="text-[#10423E] font-[Roboto] text-[16px] not-italic font-normal leading-[normal]">{address}</p>
+        <h3 className="text-primary font-[Roboto] text-[20px] not-italic font-medium leading-[normal]">{title}</h3>
+        <p className="text-primary font-[Roboto] text-[16px] not-italic font-normal leading-[normal]">{address}</p>
         <p className="text-xl text-red-400 font-bold mt-1">{price}</p>
 
         <div className="flex justify-between items-center text-sm text-white mt-3">
