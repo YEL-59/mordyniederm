@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -6,29 +6,29 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 // Define validation schema with Zod
 const formSchema = z.object({
   firstName: z.string().min(2, {
-    message: 'First name must be at least 2 characters.',
+    message: "First name must be at least 2 characters.",
   }),
   lastName: z.string().min(2, {
-    message: 'Last name must be at least 2 characters.',
+    message: "Last name must be at least 2 characters.",
   }),
   email: z.string().email({
-    message: 'Please enter a valid email address.',
+    message: "Please enter a valid email address.",
   }),
   phoneNumber: z.string().min(10, {
-    message: 'Phone number must be at least 10 digits.',
+    message: "Phone number must be at least 10 digits.",
   }),
   message: z.string().min(10, {
-    message: 'Message must be at least 10 characters.',
+    message: "Message must be at least 10 characters.",
   }),
 });
 
@@ -36,16 +36,16 @@ function Contact() {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phoneNumber: '',
-      message: '',
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      message: "",
     },
   });
 
   function onSubmit(values) {
-    console.log('Form values:', values);
+    console.log("Form values:", values);
     form.reset();
   }
   return (
@@ -53,7 +53,7 @@ function Contact() {
       <div className="w-full max-h-[800px]">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79490.29089582972!2d-0.18734208518024356!3d51.49355372870869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604b900d26973%3A0x4291f3172409ea92!2slastminute.com%20London%20Eye!5e0!3m2!1sen!2sbd!4v1745322336934!5m2!1sen!2sbd"
-          width="1920"
+          width="1900"
           height="800"
           style={{ border: 0 }}
           allowfullscreen=""
