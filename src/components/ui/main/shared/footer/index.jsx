@@ -1,14 +1,15 @@
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import footerlogo from "../../../.././../assets/footerlogo.png";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#123c39] text-white px-6 md:px-20 py-14">
+    <footer className="bg-[#123c39] text-white px-6 md:px-20 py-10">
       <div className="container mx-auto flex flex-col md:flex-row gap-72 items-start justify-between">
         {/* Left Section */}
-        <div className="md:w-[30%]">
+        <div className="md:w-[36%]">
           <div className="space-y-4">
             <img
-              src="/logo.svg"
+              src={footerlogo}
               alt="Lamond Grove Apartments"
               className="h-20"
             />
