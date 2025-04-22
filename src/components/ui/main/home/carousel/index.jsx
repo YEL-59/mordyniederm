@@ -1,8 +1,8 @@
 import carouselImage from '@/assets/carousel-image.png';
-import quotationIcon from '@/assets/icons/qoutation.svg';
-import { Card, CardContent } from '@/components/ui/card';
-import unfilled from '@/assets/icons/unfilled-rating.svg';
 import filled from '@/assets/icons/filled-rating.svg';
+import quotationIcon from '@/assets/icons/qoutation.svg';
+import unfilled from '@/assets/icons/unfilled-rating.svg';
+import { Card, CardContent } from '@/components/ui/card';
 
 import {
   Carousel,
@@ -67,9 +67,9 @@ function CarouselSlider() {
   };
 
   return (
-    <div className="w-full p-8 lg:p-32 bg-[#23938B]">
+    <div className="w-full p-20 sm:p-24 lg:p-28 xl:p-32 bg-[#23938B]">
       <Carousel className="w-full max-w-[1200px] mx-auto">
-        <CarouselContent className="-ml-0">
+        <CarouselContent className="-ml-[1px]">
           {carouselDatas.map((carouselData, index) => (
             <CarouselItem key={index} className="pl-0">
               <Card className="text-white flex flex-col-reverse xl:flex-row justify-between bg-[#23938B] border-none shadow-none min-h-[500px] xl:h-[551px]">
@@ -92,11 +92,11 @@ function CarouselSlider() {
                     </div>
                   </div>
                 </CardContent>
-                <div className="xl:w-[40%] w-full h-[300px] xl:h-full">
+                <div className="xl:w-[40%] w-full h-[300px] xl:h-full rounded-md">
                   <img
                     src={carouselImage}
                     alt="profile"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-md shrink-0"
                   />
                 </div>
               </Card>
