@@ -156,7 +156,7 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        ' size-12 border-none bg-transparent',
+        ' size-12 border-none bg-transparent hover:bg-transparent cursor-pointer',
         className
       )}
       disabled={!canScrollPrev}
@@ -182,11 +182,15 @@ function CarouselNext({
       data-slot="carousel-next"
       variant={variant}
       size={size}
-      className={cn(" size-12 bg-transparent border-none", className)}
+      className={cn(
+        ' size-12 bg-transparent border-none hover:bg-transparent cursor-pointer',
+        className
+      )}
       disabled={!canScrollNext}
       onClick={scrollNext}
-      {...props}>
-      <img src={leftArrow} alt="icon"/>
+      {...props}
+    >
+      <img src={leftArrow} alt="icon" />
       <span className="sr-only">Next slide</span>
     </Button>
   );
