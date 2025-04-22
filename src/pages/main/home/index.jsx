@@ -1,3 +1,4 @@
+import CarouselSlider from "@/components/ui/main/home/carousel";
 import Hero from "@/components/ui/main/home/hero";
 
 const Home = () => {
@@ -5,6 +6,7 @@ const Home = () => {
     <>
       <div>
         <Hero />
+        <CarouselSlider/>
       </div>
     </>
   );
