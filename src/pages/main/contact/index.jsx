@@ -1,5 +1,5 @@
-import ContactUs from "@/components/ui/main/contact/contacthero";
-import Map from "@/components/ui/main/contact/map";
+import ContactUs from "@/components/main/contact/contacthero";
+import Map from "@/components/main/contact/map";
 
 const Contact = () => {
   return (

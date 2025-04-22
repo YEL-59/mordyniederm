@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import navlogo from "../../../../../assets/navlogo.png";
+import navlogo from "../../../../assets/navlogo.png";
 
 const Navbar = () => {
   const navItems = [
