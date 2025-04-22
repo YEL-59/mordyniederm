@@ -7,7 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MapPin, Filter, ChevronDown } from "lucide-react";
+import { MapPin, ChevronDown } from "lucide-react";
+import Filter from "@/assets/svg/filter";
 
 const Hero = () => {
   return (
@@ -34,10 +35,10 @@ const Hero = () => {
             You at Lamond Grove Apartments.
           </p>
 
-          <div className="flex items-center gap-2 bg-white p-2 rounded-full shadow-sm w-full max-w-5xl mx-auto">
+          <div className="flex items-center gap-2 bg-white p-4 mt-5 rounded-full shadow-sm w-full max-w-5xl mx-auto">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="rounded-full px-4 flex items-center gap-2">
+                <Button className="rounded-full px-4  py-5 flex items-center gap-2">
                   Home Type <ChevronDown className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
@@ -48,21 +49,21 @@ const Hero = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <div className="flex items-center border rounded-full px-4 py-2 flex-1 gap-2">
-              <MapPin className="w-4 h-4 text-teal-600" />
+            <div className="flex items-center flex-1 bg-white text-[#8A8787] border-2 rounded-full pl-4 pr-2">
+              <MapPin className="w-4 h-4 text-[#8A8787]" />
               <Input
-                className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground"
+                type="text"
                 placeholder="Location"
-                style={{ outline: "none" }}
+                className="flex-1 border-none shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground text-sm bg-transparent"
               />
             </div>
 
-            <Button className="rounded-full bg-transparent  text-[#8A8787] hover:text-white border border-[#E9E9E9] px-4 flex items-center gap-2">
+            <Button className="rounded-full bg-transparent py-5  text-[#8A8787] hover:text-white border border-[#E9E9E9] px-4 flex items-center gap-2">
               <Filter className="w-4 h-4 text-[#8A8787]" />
               All Filters
             </Button>
 
-            <Button className="rounded-full bg-teal-600 hover:bg-teal-700 text-white px-6">
+            <Button className="rounded-full bg-teal-600 hover:bg-teal-700 text-white px-6 py-5 flex items-center gap-2">
               Search
             </Button>
           </div>
