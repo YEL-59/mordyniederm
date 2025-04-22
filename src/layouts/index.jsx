@@ -4,13 +4,13 @@ import { Outlet } from "react-router";
 
 const Mainlayout = () => {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <div>
+      <main className="flex-grow">
         <Outlet />
-      </div>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
