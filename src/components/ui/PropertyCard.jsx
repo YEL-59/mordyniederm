@@ -1,17 +1,12 @@
 import React from "react";
 import { BedDouble, Bath, Expand, Eye } from "lucide-react";
+import PropertyCardContent from './PropertyCardContent';
 
 const PropertyCard = ({ property }) => {
   const {
     image,
     status,
     title,
-    address,
-    price,
-    beds,
-    baths,
-    area,
-    views,
   } = property;
 
   const getStatusStyle = (label) => {
@@ -26,7 +21,7 @@ const PropertyCard = ({ property }) => {
   };
 
   return (
-    <div className="relative h-72 rounded-xl overflow-hidden shadow-md">
+    <div className="relative h-72 rounded-xl overflow-hidden shadow-md h-full">
       <img
         src={image}
         alt={title}
@@ -49,25 +44,15 @@ const PropertyCard = ({ property }) => {
       </div>
 
       {/* Card content */}
-      <div className="absolute rounded-[8px] bg-[#FFF]  bottom-[22px] left-[22px] right-[22px] p-4 z-10 text-[#10423E]">
-        <h3 className="text-[#10423E] font-[Roboto] text-[20px] not-italic font-medium leading-[normal]">{title}</h3>
-        <p className="text-[#10423E] font-[Roboto] text-[16px] not-italic font-normal leading-[normal]">{address}</p>
-        <p className="text-[#EB664E] font-[Roboto] text-[24px] not-italic font-semibold leading-[31.5px] mt-1">{price}</p>
-
-        <div className="flex justify-between items-center text-sm text-white mt-3">
-          <div className="flex items-center gap-1">
-            <BedDouble size={16} /> {beds}
-          </div>
-          <div className="flex items-center gap-1">
-            <Bath size={16} /> {baths}
-          </div>
-          <div className="flex items-center gap-1">
-            <Expand size={16} /> {area}
-          </div>
-          <div className="flex items-center gap-1">
-            <Eye size={16} /> {views}
-          </div>
-        </div>
+      <div className="absolute  bottom-[22px] left-[22px] right-[22px]  z-10 ">
+      <PropertyCardContent
+                title={property.title}
+                address={property.address}
+                price={property.price}
+                beds={property.beds}
+                baths={property.baths}
+                area={property.area}
+              />
       </div>
     </div>
   );

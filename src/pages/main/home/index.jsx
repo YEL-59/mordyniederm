@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import PropertyCard from '@/components/ui/PropertyCard';
 import React from 'react'
 import home1 from "../../../assets/home1.jpg";
@@ -7,26 +7,10 @@ import home3 from "../../../assets/home3.jpg";
 import home4 from "../../../assets/home4.jpg";
 import home5 from "../../../assets/home5.jpg";
 import home6 from "../../../assets/home6.jpg";
-=======
 import AboutUs from "@/components/ui/main/home/aboutus";
 import BestProperties from "@/components/ui/main/home/bestproperties";
 import Hero from "@/components/ui/main/home/hero";
 import { Whychoseus } from "@/components/ui/main/home/whychoseus";
-
-const Home = () => {
-  return (
-    <>
-      <div>
-        <Hero />
-        <Whychoseus />
-        <BestProperties />
-        <AboutUs />
-      </div>
-    </>
-  );
-};
->>>>>>> 0305eb1d13c8dc868817d052186923dba5e2a962
-
 
 const properties = [
     {
@@ -41,7 +25,7 @@ const properties = [
       views: 400,
     },
     {
-      image: home1,
+      image: home2,
       status: [ "FOR LEASE"],
       title: "Luxury Family Home",
       address: "1300 3rd Street, NY",
@@ -96,18 +80,25 @@ const properties = [
       views: 400,
     },
   ];
-const index = () => {
-  return (
 
-    // property card 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+const Home = () => {
+  return (
+    <>
+      <div>
+        <Hero />
+        <Whychoseus />
+        <BestProperties />
+        <AboutUs />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {properties.map((property, index) => (
       <PropertyCard key={index} property={property} />
     ))}
   </div>
+      </div>
+    </>
+  );
+};
 
-  
-  )
-}
 
-export default index
+
+export default Home
