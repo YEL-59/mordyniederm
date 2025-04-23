@@ -1,7 +1,8 @@
 import Mainlayout from "@/layouts";
 import About from "@/pages/main/about";
 
-import Home from "@/pages/main/Home";
+import Contact from "@/pages/main/contact";
+import Home from "@/pages/main/home";
 
 import { createBrowserRouter } from "react-router";
 
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
       },
     ],
   },

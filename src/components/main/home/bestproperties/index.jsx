@@ -1,32 +1,27 @@
-import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { BedDouble, Bath, Ruler } from "lucide-react";
-import PropertyCardContent from "@/components/ui/PropertyCardContent";
-import PropertyCard from "@/components/ui/PropertyCard";
+import { Card } from '@/components/ui/card';
+import PropertyCard from '@/components/ui/PropertyCard';
 
-import home1 from "../../../../../assets/home1.jpg";
+import home1 from '@/assets/home1.jpg';
 
 const properties = [
-    {
-      image: home1,
-      status: ["FOR RENT", "FOR LEASE"],
-      title: "Luxury Family Home",
-      address: "1300 3rd Street, NY",
-      price: "$395,000",
-      beds: 4,
-      baths: 5,
-      area: "1,200 Sq Ft",
-      views: 400,
-    },
-   
-  ];
+  {
+    image: home1,
+    status: ['FOR RENT', 'FOR LEASE'],
+    title: 'Luxury Family Home',
+    address: '1300 3rd Street, NY',
+    price: '$395,000',
+    beds: 4,
+    baths: 5,
+    area: '1,200 Sq Ft',
+    views: 400,
+  },
+];
 
 const BestProperties = () => {
   return (
     <section className="bg-white text-white py-16 px-4">
       <div className="container mx-auto text-center mb-10">
-        <h2 className="text-4xl font-bold text-teal-300 mb-4">
+        <h2 className="text-4xl font-bold text-[#10423E] mb-4">
           Best Properties
         </h2>
         <p className="text-gray-400 max-w-xl mx-auto">
@@ -38,9 +33,9 @@ const BestProperties = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 container mx-auto">
         <Card className="lg:col-span-6 row-span-2 overflow-hidden p-0">
-        {properties.map((property, index) => (
-      <PropertyCard  key={index} property={property} />
-    ))}
+          {properties.map((property, index) => (
+            <PropertyCard key={index} property={property} />
+          ))}
         </Card>
 
         <Card className="lg:col-span-6 overflow-hidden p-0">
