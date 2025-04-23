@@ -50,10 +50,10 @@ const TeamSection = () => {
               className="w-full h-[300px] rounded-2xl object-cover"
             />
             <div className=" w-full  p-4 text-left">
-              <h3 className="text-black text-lg font-semibold">
+              <h3 className="text-[#10423E] font-[Roboto] text-[24px] not-italic font-medium leading-[normal]">
                 {member.name}
               </h3>
-              <p className="text-primary text-sm">{member.role}</p>
+              <p className="text-[#8A8787] font-[Roboto] text-[16px] not-italic font-normal leading-[26px]">{member.role}</p>
             </div>
           </div>
         ))}
