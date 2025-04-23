@@ -1,6 +1,7 @@
 import React from "react";
 import { BedDouble, Bath, Expand, Eye } from "lucide-react";
 import PropertyCardContent from './PropertyCardContent';
+import { Button } from "./button";
 
 const PropertyCard = ({ property }) => {
   const {
@@ -21,12 +22,8 @@ const PropertyCard = ({ property }) => {
   };
 
   return (
-    <div className="relative h-72 rounded-xl overflow-hidden shadow-md h-full">
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-full object-cover"
-      />
+    <div className="relative h-72 rounded-xl overflow-hidden shadow-md lg:h-full">
+      <img src={image} alt={title} className="w-full h-full object-cover" />
 
       {/* Gradient overlay for readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
@@ -34,25 +31,27 @@ const PropertyCard = ({ property }) => {
       {/* Status badges */}
       <div className="absolute top-3 left-3 flex gap-2 flex-wrap z-10">
         {status.map((label, index) => (
-          <span
+          <Button
             key={index}
-            className={`text-xs font-semibold px-2 py-1 rounded ${getStatusStyle(label)}`}
+            className={`text-xs font-semibold px-5 py-1 rounded-full cursor-pointer ${getStatusStyle(
+              label
+            )}`}
           >
             {label}
-          </span>
+          </Button>
         ))}
       </div>
 
       {/* Card content */}
       <div className="absolute  bottom-[22px] left-[22px] right-[22px]  z-10 ">
-      <PropertyCardContent
-                title={property.title}
-                address={property.address}
-                price={property.price}
-                beds={property.beds}
-                baths={property.baths}
-                area={property.area}
-              />
+        <PropertyCardContent
+          title={property.title}
+          address={property.address}
+          price={property.price}
+          beds={property.beds}
+          baths={property.baths}
+          area={property.area}
+        />
       </div>
     </div>
   );
