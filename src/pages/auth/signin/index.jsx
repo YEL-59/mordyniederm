@@ -14,6 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { Link } from "react-router";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -140,9 +141,11 @@ export default function SignInForm() {
 
           <p className="text-center text-sm mt-6">
             Don’t have an account?{" "}
-            <span className="text-teal-600 underline cursor-pointer">
-              Sign Up
-            </span>
+            <Link to={"/sign-up"}>
+              <span className="text-teal-600 underline cursor-pointer">
+                Sign Up
+              </span>
+            </Link>
           </p>
         </CardContent>
       </Card>
