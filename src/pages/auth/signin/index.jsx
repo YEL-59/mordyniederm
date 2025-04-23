@@ -22,7 +22,7 @@ const formSchema = z.object({
     .min(6, { message: "Password must be at least 6 characters" }),
 });
 
-export default function SignIn() {
+export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm({
@@ -32,11 +32,16 @@ export default function SignIn() {
 
   const onSubmit = async (data) => {
     console.log("Submitting:", data);
+    await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
-      <Card className="w-full max-w-2xl p-8 shadow-lg">
+      <Card className="w-full max-w-lg p-8 shadow-lg">
         <CardContent>
           <h2 className="text-3xl font-semibold text-center mb-2 text-teal-900">
             Welcome Back

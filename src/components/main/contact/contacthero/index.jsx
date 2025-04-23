@@ -1,13 +1,53 @@
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import { CalendarIcon } from "lucide-react";
+import { useState } from "react";
+
+const formSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  email: z.string().email("Invalid email"),
+  scheduleDate: z.string().min(1, "Date is required"),
+  phone: z.string().min(10, "Phone is required"),
+  message: z.string().min(1, "Message is required"),
+  terms: z.literal(true, {
+    errorMap: () => ({ message: "You must accept the terms" }),
+  }),
+});
 
 export default function ContactUs() {
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      scheduleDate: "",
+      phone: "",
+      message: "",
+      terms: false,
+    },
+  });
+
+  function onSubmit(values) {
+    console.log("Form Data:", values);
+  }
+
   return (
-    <div className="bg-[#f3fdfc]  py-16 px-4 md:px-16">
+    <div className="bg-[#f3fdfc] py-16 px-4 md:px-16">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
         {/* Left Side */}
         <div>
@@ -44,58 +84,132 @@ export default function ContactUs() {
           </div>
         </div>
 
-        {/* Right Side */}
-        <form className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <Label htmlFor="firstName">First Name</Label>
-              <Input id="firstName" placeholder="Ali" />
+        {/* Right Side - ShadCN Form */}
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="firstName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>First Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Ali" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Last Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Tufan" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
-            <div>
-              <Label htmlFor="lastName">Last Name</Label>
-              <Input id="lastName" placeholder="Tufan" />
+
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="example.com" type="email" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="scheduleDate"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Schedule Date</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          placeholder="12 june 23"
+                          className="pl-10"
+                          {...field}
+                        />
+                        <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="123 456 7890" type="tel" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
-          </div>
 
-          <div>
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" placeholder="example.com" type="email" />
-          </div>
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Message</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      className="min-h-[150px]"
+                      placeholder="Your message..."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <Label htmlFor="scheduleDate">Schedule Date</Label>
-              <div className="relative">
-                <Input
-                  id="scheduleDate"
-                  placeholder="12 june 23"
-                  className="pl-10"
-                />
-                <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              </div>
-            </div>
-            <div>
-              <Label htmlFor="phone">Phone Number</Label>
-              <Input id="phone" placeholder="123 456 7890" type="tel" />
-            </div>
-          </div>
+            <FormField
+              control={form.control}
+              name="terms"
+              render={({ field }) => (
+                <FormItem className="flex items-center space-x-2">
+                  <FormControl>
+                    <Checkbox
+                      id="terms"
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <FormLabel htmlFor="terms" className="text-sm text-gray-600">
+                    I accept the <span className="underline">Terms</span>
+                  </FormLabel>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <div>
-            <Label htmlFor="message">Message</Label>
-            <Textarea id="message" className="min-h-[150px]" />
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <Checkbox id="terms" />
-            <Label htmlFor="terms" className="text-sm text-gray-600">
-              I accept the <span className="underline">Terms</span>
-            </Label>
-          </div>
-
-          <Button className="bg-[#2A9D8F] hover:bg-[#21867a] w-full md:w-[150px]">
-            Submit
-          </Button>
-        </form>
+            <Button className="bg-[#2A9D8F] hover:bg-[#21867a] w-full md:w-[150px]">
+              Submit
+            </Button>
+          </form>
+        </Form>
       </div>
     </div>
   );

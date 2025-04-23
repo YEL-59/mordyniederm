@@ -1,5 +1,6 @@
 import Mainlayout from "@/layouts";
 import SignIn from "@/pages/auth/signin";
+import SignUp from "@/pages/auth/signup";
 import About from "@/pages/main/about";
 
 import Contact from "@/pages/main/contact";
@@ -25,7 +26,10 @@ export const router = createBrowserRouter([
         path: "sign-in",
         element: <SignIn />,
       },
-      {},
+      {
+        path: "sign-up",
+        element: <SignUp />,
+      },
     ],
   },
 ]);

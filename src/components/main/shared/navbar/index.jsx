@@ -39,7 +39,10 @@ const Navbar = () => {
             <Phone className="w-5 h-5" />
             <span>+603-1234-5678</span>
           </div>
-          <Button variant="default">Sign In</Button>
+          <Link to="/sign-in">
+            {" "}
+            <Button variant="default">Sign In</Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Trigger */}
@@ -65,9 +68,12 @@ const Navbar = () => {
                   <Phone className="w-5 h-5" />
                   <span>+603-1234-5678</span>
                 </div>
-                <Button className="mt-4 w-full rounded-full bg-primary text-primary">
-                  Sign In
-                </Button>
+                <Link to="sign-in">
+                  {" "}
+                  <Button className="mt-4 w-full rounded-full bg-primary text-primary">
+                    Sign In
+                  </Button>
+                </Link>
               </div>
             </SheetContent>
           </Sheet>
