@@ -67,6 +67,7 @@ const PropertyCardContent = ({ title, address, price, beds, baths, area }) => {
             </span>
             {beds}
           </span>
+          <div className="w-[1px] h-full bg-[#D9D9D9] min-h-5"></div>
           <span className="flex items-center gap-1 lg:gap-2 text-[#10423E] font-[Roboto] text-[16px] not-italic font-normal leading-[normal]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -94,6 +95,7 @@ const PropertyCardContent = ({ title, address, price, beds, baths, area }) => {
             </svg>{' '}
             {baths}
           </span>
+          <div className="w-[1px] h-full bg-[#D9D9D9] min-h-5"></div>
           <span className="flex items-center gap-1 lg:gap-2 text-[#10423E] font-[Roboto] text-[16px] not-italic font-normal leading-[normal]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
