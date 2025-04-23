@@ -1,7 +1,10 @@
 import React from "react";
 import { BedDouble, Bath, Ruler } from "lucide-react";
 
-const PropertyCardContent = ({ title, address, price, beds, baths, area }) => {
+const PropertyCardContent = ({ property }) => {
+    if (!property) return <div>Loading...</div>;
+    const { title, address, price, beds, baths, area } = property;
+    console.log({ title, address, price, beds, baths, area });
   return (
     <div className=" bg-white rounded-xl text-black p-4">
       <h3 className="text-[#10423E] font-[Roboto] text-[20px] not-italic font-medium leading-[normal]">{title}</h3>

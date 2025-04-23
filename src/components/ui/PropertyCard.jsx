@@ -1,11 +1,9 @@
-import React from "react";
-import { BedDouble, Bath, Expand, Eye } from "lucide-react";
 import PropertyCardContent from './PropertyCardContent';
-import { Button } from "./button";
+import { Button } from './button';
 
 const PropertyCard = ({ property, classname }) => {
   const { image, status, title } = property;
-
+console.log(title)
   const getStatusStyle = (label) => {
     switch (label) {
       case 'FOR RENT':
@@ -47,14 +45,7 @@ const PropertyCard = ({ property, classname }) => {
 
       {/* Card content */}
       <div className="absolute  bottom-[22px] left-[22px] right-[22px]  z-10 ">
-        <PropertyCardContent
-          title={property.title}
-          address={property.address}
-          price={property.price}
-          beds={property.beds}
-          baths={property.baths}
-          area={property.area}
-        />
+        <PropertyCardContent property={property} />
       </div>
     </div>
   );

@@ -1,8 +1,6 @@
-import carouselImage from "@/assets/carousel-image.png";
-import filled from "@/assets/icons/filled-rating.svg";
-import quotationIcon from "@/assets/icons/qoutation.svg";
-import unfilled from "@/assets/icons/unfilled-rating.svg";
-import { Card, CardContent } from "@/components/ui/card";
+import carouselImage from '@/assets/carousel-image.png';
+import quotationIcon from '@/assets/icons/qoutation.svg';
+import { Card, CardContent } from '@/components/ui/card';
 
 import {
   Carousel,
@@ -10,62 +8,47 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from '@/components/ui/carousel';
+import StarRating from '../../shared/star-rating';
 
 function CarouselSlider() {
   const carouselDatas = [
     {
-      name: "Cameron Williamson",
-      designation: "CEO, XYZ Compnay",
+      name: 'Cameron Williamson',
+      designation: 'CEO, XYZ Compnay',
       rating: 3,
       review:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently.",
     },
     {
-      name: "Cameron Williamson",
-      designation: "CEO, XYZ Compnay",
+      name: 'Cameron Williamson',
+      designation: 'CEO, XYZ Compnay',
       rating: 4,
       review:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently.",
     },
     {
-      name: "Cameron Williamson",
-      designation: "CEO, XYZ Compnay",
+      name: 'Cameron Williamson',
+      designation: 'CEO, XYZ Compnay',
       rating: 5,
       review:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently.",
     },
     {
-      name: "Cameron Williamson",
-      designation: "CEO, XYZ Compnay",
+      name: 'Cameron Williamson',
+      designation: 'CEO, XYZ Compnay',
       rating: 4,
       review:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently.",
     },
     {
-      name: "Cameron Williamson",
-      designation: "CEO, XYZ Compnay",
+      name: 'Cameron Williamson',
+      designation: 'CEO, XYZ Compnay',
       rating: 4,
       review:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently.",
     },
   ];
-  // Star rating component
-  const StarRating = ({ rating }) => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      stars.push(
-        <img
-          key={i}
-          src={i <= rating ? filled : unfilled}
-          alt={i <= rating ? "filled star" : "unfilled star"}
-          className="w-5 h-5"
-        />
-      );
-    }
-    return <div className="flex gap-1">{stars}</div>;
-  };
-
   return (
     <div className="w-full p-20 sm:p-24 lg:p-28 xl:p-32 bg-[#23938B]">
       <Carousel className="w-full max-w-[1200px] mx-auto">

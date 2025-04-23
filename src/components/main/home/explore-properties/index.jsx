@@ -1,9 +1,9 @@
 import PropertyCard from '@/components/ui/PropertyCard';
 import { useState } from 'react';
+import { Link } from 'react-router';
 
 function ExploreProperties({ properties }) {
   const [activeTab, setActiveTab] = useState('all properties');
-
   const tabs = ['all properties', 'villa', 'apartment', 'office'];
 
   const filteredProperties =
@@ -12,7 +12,7 @@ function ExploreProperties({ properties }) {
       : properties.filter(
           (property) => property.property.toLowerCase() === activeTab
         );
-
+        console.log(filteredProperties);
   return (
     <div className="p-16 sm:p-20 lg:p-24 xl:p-28 2xl:p-32">
       <div className="flex flex-col gap-16 max-w-[70%] w-full mx-auto">
@@ -50,12 +50,13 @@ function ExploreProperties({ properties }) {
           {/* Property Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProperties.map((property, index) => (
-              <div
+              <Link
+                to={`/property-details/${property.id}`}
                 key={index}
                 className="rounded-lg shadow border overflow-hidden"
               >
-                <PropertyCard property={property} classname='h-[446px]' />
-              </div>
+                <PropertyCard property={property} classname="h-[446px]" />
+              </Link>
             ))}
           </div>
 
