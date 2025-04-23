@@ -28,7 +28,7 @@ function ExploreProperties({ properties }) {
         </div>
       </div>
 
-      <div className="p-4 max-w-7xl mx-auto">
+      <div className="p-4">
         <div className="p-4 flex flex-col gap-6">
           {/* Tabs */}
           <div className="flex justify-center gap-8 mb-6 flex-wrap">
