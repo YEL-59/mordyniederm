@@ -1,4 +1,5 @@
 import Mainlayout from "@/layouts";
+import SignIn from "@/pages/auth/signin";
 import About from "@/pages/main/about";
 
 import Contact from "@/pages/main/contact";
@@ -20,6 +21,11 @@ export const router = createBrowserRouter([
         path: "contact",
         element: <Contact />,
       },
+      {
+        path: "sign-in",
+        element: <SignIn />,
+      },
+      {},
     ],
   },
 ]);

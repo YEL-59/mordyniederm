@@ -1,4 +1,4 @@
-import { CheckCircle } from "lucide-react";
+import Checkmark from "@/assets/svg/checkmark";
 
 export default function MissionSection() {
   return (
@@ -57,7 +57,7 @@ export default function MissionSection() {
               "Lorem Ipsum is simply dummy",
             ].map((item, idx) => (
               <div key={idx} className="flex items-start gap-2 text-gray-700">
-                <CheckCircle className="text-teal-500 w-5 h-5 mt-1" />
+                <Checkmark className="text-teal-500 w-5 h-5 mt-1" />
                 <span>{item}</span>
               </div>
             ))}
