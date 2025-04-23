@@ -15,6 +15,7 @@ import TeamSection from '@/components/main/home/teamsection';
 import CarouselSlider from '@/components/main/home/carousel';
 import FAQ from '@/components/main/home/faq';
 import Contact from '@/components/main/home/contact';
+import ExploreProperties from '@/components/main/home/explore-properties';
 
 
 const Home = () => {
@@ -29,6 +30,7 @@ const Home = () => {
         baths: 5,
         area: '1,200 Sq Ft',
         views: 400,
+        property: 'apartment',
       },
       {
         image: home2,
@@ -40,6 +42,7 @@ const Home = () => {
         baths: 5,
         area: '1,200 Sq Ft',
         views: 400,
+        property: 'villa',
       },
       {
         image: home3,
@@ -51,6 +54,7 @@ const Home = () => {
         baths: 5,
         area: '1,200 Sq Ft',
         views: 400,
+        property: 'office'
       },
       {
         image: home4,
@@ -62,6 +66,7 @@ const Home = () => {
         baths: 5,
         area: '1,200 Sq Ft',
         views: 400,
+        property: 'office'
       },
       {
         image: home5,
@@ -73,6 +78,7 @@ const Home = () => {
         baths: 5,
         area: '1,200 Sq Ft',
         views: 400,
+        property: 'villa'
       },
       {
         image: home6,
@@ -84,12 +90,14 @@ const Home = () => {
         baths: 5,
         area: '1,200 Sq Ft',
         views: 400,
+        property: 'apartment',
       },
     ];
   return (
     <>
       <div>
         <Hero />
+        <ExploreProperties properties={properties} />
         <Whychoseus />
         <BestProperties  />
         <AboutUs/>
@@ -98,6 +106,9 @@ const Home = () => {
       <PropertyCard key={index} property={property} />
     ))}
   </div>
+        <BestProperties />
+        <AboutUs />
+
         <TeamSection />
         <CarouselSlider />
         <FAQ />

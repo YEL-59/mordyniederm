@@ -19,12 +19,12 @@ const properties = [
 
 const BestProperties = () => {
   return (
-    <section className="bg-white text-white py-16 px-4">
-      <div className="container mx-auto text-center mb-10">
-        <h2 className="text-4xl font-bold text-[#10423E] mb-4">
+    <section className="bg-white text-white py-16 px-4 flex flex-col gap-16">
+      <div className="container mx-auto flex flex-col gap-2 items-center">
+        <h2 className="text-[44px] sm:text-[48px] lg:text-[52px] xl:text-[56px] font-medium capitalize text-[#10423E]">
           Best Properties
         </h2>
-        <p className="text-gray-400 max-w-xl mx-auto">
+        <p className="text-base leading-[26px] text-[#8A8787] w-full lg:w-[80%] xl:w-[60%] text-center">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s
@@ -34,7 +34,7 @@ const BestProperties = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 container mx-auto">
         <Card className="lg:col-span-6 row-span-2 overflow-hidden p-0">
           {properties.map((property, index) => (
-            <PropertyCard key={index} property={property} />
+            <PropertyCard key={index} property={property} classname={`h-full`} />
           ))}
         </Card>
 
