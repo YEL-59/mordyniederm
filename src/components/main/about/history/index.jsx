@@ -29,7 +29,9 @@ const Timeline = () => {
   return (
     <div className=" text-white py-16 px-6">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-teal-400">Our History</h2>
+        <h2 className="text-[#10423E] text-center font-roboto text-[56px] not-italic font-medium leading-normal capitalize">
+          Our History
+        </h2>
         <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever

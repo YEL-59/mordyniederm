@@ -1,6 +1,7 @@
 import AboutHero from "@/components/main/about/abouthero";
 import Timeline from "@/components/main/about/history";
 import MissionSection from "@/components/main/about/ourmission";
+import StatsBar from "@/components/main/about/status";
 import CarouselSlider from "@/components/main/home/carousel";
 import Contact from "@/components/main/home/contact";
 import FAQ from "@/components/main/home/faq";
@@ -11,6 +12,7 @@ const About = () => {
     <>
       <div>
         <AboutHero />
+        <StatsBar />
         <Timeline />
         <MissionSection />
         <TeamSection />
