@@ -2,6 +2,25 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BedDouble, Bath, Ruler } from "lucide-react";
+import PropertyCardContent from "@/components/ui/PropertyCardContent";
+import PropertyCard from "@/components/ui/PropertyCard";
+
+import home1 from "../../../../../assets/home1.jpg";
+
+const properties = [
+    {
+      image: home1,
+      status: ["FOR RENT", "FOR LEASE"],
+      title: "Luxury Family Home",
+      address: "1300 3rd Street, NY",
+      price: "$395,000",
+      beds: 4,
+      baths: 5,
+      area: "1,200 Sq Ft",
+      views: 400,
+    },
+   
+  ];
 
 const BestProperties = () => {
   return (
@@ -19,48 +38,9 @@ const BestProperties = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 container mx-auto">
         <Card className="lg:col-span-6 row-span-2 overflow-hidden p-0">
-          <div className="relative h-full">
-            <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
-              alt="Luxury Family Home"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute top-4 left-4 flex space-x-2">
-              <Button
-                variant="secondary"
-                className="bg-teal-700 text-white px-4 py-1 rounded-full text-xs"
-              >
-                FOR RENT
-              </Button>
-              <Button
-                variant="ghost"
-                className="bg-white text-black px-4 py-1 rounded-full text-xs"
-              >
-                FOR LEASE
-              </Button>
-            </div>
-            <CardContent className="absolute bottom-5 left-5 right-5 bg-white rounded-xl text-black p-4">
-              <h3 className="text-lg font-semibold">Luxury Family Home</h3>
-              <p className="text-sm text-gray-600 flex items-center gap-2 mt-1">
-                <span className="inline-block w-4 h-4 bg-gray-400 rounded-full" />
-                1800-1818 79th St
-              </p>
-              <div className="flex justify-between items-center mt-2">
-                <span className="text-red-600 font-bold text-lg">$395,000</span>
-                <div className="flex items-center gap-4 text-gray-600">
-                  <span className="flex items-center gap-1 text-sm">
-                    <BedDouble className="w-4 h-4" /> 4
-                  </span>
-                  <span className="flex items-center gap-1 text-sm">
-                    <Bath className="w-4 h-4" /> 1
-                  </span>
-                  <span className="flex items-center gap-1 text-sm">
-                    <Ruler className="w-4 h-4" /> 400
-                  </span>
-                </div>
-              </div>
-            </CardContent>
-          </div>
+        {properties.map((property, index) => (
+      <PropertyCard  key={index} property={property} />
+    ))}
         </Card>
 
         <Card className="lg:col-span-6 overflow-hidden p-0">
