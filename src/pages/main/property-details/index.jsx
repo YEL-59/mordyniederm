@@ -22,6 +22,7 @@ import unfilledRatingIcon from '@/assets/icons/unfilled-rating-property-details.
 import reviewOne from '@/assets/review-1.png';
 import reviewTwo from '@/assets/review-2.png';
 import reviewThree from '@/assets/review-3.png';
+import FAQ from '@/components/main/home/faq';
 import AvailableCard from '@/components/main/property-details/available-card';
 import NeighborhoodCard from '@/components/main/property-details/neighborhood-card';
 import ReviewCard from '@/components/main/property-details/review-card';
@@ -51,6 +52,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router';
 import { z } from 'zod';
+import Contact from '@/components/main/home/contact';
 
 // Define validation schema with Zod
 const formSchema = z.object({
@@ -772,6 +774,7 @@ reviews : reviews.slice(0,3);
     form.reset();
   }
   return (
+    <>
     <div className="container mx-auto flex flex-col gap-6 py-12">
       <div
         className="flex items-center gap-2 cursor-pointer transition-all duration-300"
@@ -1495,6 +1498,9 @@ reviews : reviews.slice(0,3);
         </div>
       </div>
     </div>
+    <FAQ />
+    <Contact />
+    </>
   );
 }
 
