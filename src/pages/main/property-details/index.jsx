@@ -19,8 +19,12 @@ import poolIcon from '@/assets/icons/pool.svg';
 import backIcon from '@/assets/icons/previous-arrow.svg';
 import sizeIcon from '@/assets/icons/size.svg';
 import unfilledRatingIcon from '@/assets/icons/unfilled-rating-property-details.svg';
+import reviewOne from '@/assets/review-1.png';
+import reviewTwo from '@/assets/review-2.png';
+import reviewThree from '@/assets/review-3.png';
 import AvailableCard from '@/components/main/property-details/available-card';
 import NeighborhoodCard from '@/components/main/property-details/neighborhood-card';
+import ReviewCard from '@/components/main/property-details/review-card';
 import TransportationCard from '@/components/main/property-details/transportation-card';
 import StarRating from '@/components/main/shared/star-rating';
 import { Button } from '@/components/ui/button';
@@ -44,6 +48,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
 import { useParams } from 'react-router';
 import { z } from 'zod';
 
@@ -73,105 +78,496 @@ const feedbackSchema = z.object({
   message: z.string().min(1, 'Message is required'),
 });
 
-function PropertyDetails() {
-  const properties = [
+
+export  const properties = [
+  {
+    id: 1,
+    image: home1,
+    status: ['FOR RENT', 'FOR LEASE'],
+    title: 'Luxury Family Home',
+    address: '1300 3rd Street, NY',
+    price: '$395,000',
+    beds: 4,
+    baths: 5,
+    area: '1,200 Sq Ft',
+    views: 400,
+    type: 'apartment',
+    booking: 'Available',
+    rating: 4,
+    totalReview: 12,
+  },
+  {
+    id: 2,
+    image: home2,
+    status: ['FOR LEASE'],
+    title: 'Luxury Family Home',
+    address: '1300 3rd Street, NY',
+    price: '$395,000',
+    beds: 4,
+    baths: 5,
+    area: '1,200 Sq Ft',
+    views: 400,
+    type: 'villa',
+    booking: 'Not Available',
+    rating: 4,
+    totalReview: 12,
+  },
+  {
+    id: 3,
+    image: home3,
+    status: ['FOR RENT'],
+    title: 'Luxury Family Home',
+    address: '1300 3rd Street, NY',
+    price: '$395,000',
+    beds: 4,
+    baths: 5,
+    area: '1,200 Sq Ft',
+    views: 400,
+    type: 'office',
+    booking: 'Available',
+    rating: 4,
+    totalReview: 12,
+  },
+  {
+    id: 4,
+    image: home4,
+    status: ['FOR RENT'],
+    title: 'Luxury Family Home',
+    address: '1300 3rd Street, NY',
+    price: '$395,000',
+    beds: 4,
+    baths: 5,
+    area: '1,200 Sq Ft',
+    views: 400,
+    type: 'office',
+    booking: 'Available',
+    rating: 4,
+    totalReview: 12,
+  },
+  {
+    id: 5,
+    image: home5,
+    status: ['FOR RENT', 'FOR LEASE'],
+    title: 'Luxury Family Home',
+    address: '1300 3rd Street, NY',
+    price: '$395,000',
+    beds: 4,
+    baths: 5,
+    area: '1,200 Sq Ft',
+    views: 400,
+    type: 'villa',
+    booking: 'Not Available',
+    rating: 4,
+    totalReview: 12,
+  },
+  {
+    id: 6,
+    image: home6,
+    status: ['FOR RENT', 'FOR LEASE'],
+    title: 'Luxury Family Home',
+    address: '1300 3rd Street, NY',
+    price: '$395,000',
+    beds: 4,
+    baths: 5,
+    area: '1,200 Sq Ft',
+    views: 400,
+    type: 'apartment',
+    booking: 'Available',
+    rating: 4,
+    totalReview: 12,
+  },
+];
+ //   near by school
+  export const nearBySchool = [
     {
-      id: 1,
-      image: home1,
-      status: ['FOR RENT', 'FOR LEASE'],
-      title: 'Luxury Family Home',
-      address: '1300 3rd Street, NY',
-      price: '$395,000',
-      beds: 4,
-      baths: 5,
-      area: '1,200 Sq Ft',
-      views: 400,
-      type: 'apartment',
-      booking: 'Available',
-      rating: 4,
-      totalReview: 12,
+      rating: 9,
+      name: 'Sunflower Kindergarten School',
+      grades: 'K - 5',
+      distance: '0.8',
     },
     {
-      id: 2,
-      image: home2,
-      status: ['FOR LEASE'],
-      title: 'Luxury Family Home',
-      address: '1300 3rd Street, NY',
-      price: '$395,000',
-      beds: 4,
-      baths: 5,
-      area: '1,200 Sq Ft',
-      views: 400,
-      type: 'villa',
-      booking: 'Not Available',
-      rating: 4,
-      totalReview: 12,
+      rating: 8,
+      name: 'Green Valley Elementary',
+      grades: '1 - 5',
+      distance: '1.2',
     },
     {
-      id: 3,
-      image: home3,
-      status: ['FOR RENT'],
-      title: 'Luxury Family Home',
-      address: '1300 3rd Street, NY',
-      price: '$395,000',
-      beds: 4,
-      baths: 5,
-      area: '1,200 Sq Ft',
-      views: 400,
-      type: 'office',
-      booking: 'Available',
-      rating: 4,
-      totalReview: 12,
+      rating: 7,
+      name: 'Bright Future School',
+      grades: 'K - 8',
+      distance: '1.5',
     },
     {
-      id: 4,
-      image: home4,
-      status: ['FOR RENT'],
-      title: 'Luxury Family Home',
-      address: '1300 3rd Street, NY',
-      price: '$395,000',
-      beds: 4,
-      baths: 5,
-      area: '1,200 Sq Ft',
-      views: 400,
-      type: 'office',
-      booking: 'Available',
-      rating: 4,
-      totalReview: 12,
+      rating: 9,
+      name: 'Oakridge International',
+      grades: '1 - 10',
+      distance: '2.0',
     },
     {
-      id: 5,
-      image: home5,
-      status: ['FOR RENT', 'FOR LEASE'],
-      title: 'Luxury Family Home',
-      address: '1300 3rd Street, NY',
-      price: '$395,000',
-      beds: 4,
-      baths: 5,
-      area: '1,200 Sq Ft',
-      views: 400,
-      type: 'villa',
-      booking: 'Not Available',
-      rating: 4,
-      totalReview: 12,
+      rating: 8,
+      name: 'Harmony Public School',
+      grades: 'K - 12',
+      distance: '2.3',
     },
     {
-      id: 6,
-      image: home6,
-      status: ['FOR RENT', 'FOR LEASE'],
-      title: 'Luxury Family Home',
-      address: '1300 3rd Street, NY',
-      price: '$395,000',
-      beds: 4,
-      baths: 5,
-      area: '1,200 Sq Ft',
-      views: 400,
-      type: 'apartment',
-      booking: 'Available',
-      rating: 4,
-      totalReview: 12,
+      rating: 7,
+      name: 'Riverdale Primary School',
+      grades: 'K - 5',
+      distance: '0.9',
+    },
+    {
+      rating: 9,
+      name: 'Mount Litera Zee School',
+      grades: '1 - 12',
+      distance: '1.7',
+    },
+    {
+      rating: 8,
+      name: 'City Central School',
+      grades: '6 - 12',
+      distance: '2.8',
+    },
+    { rating: 9, name: 'Hilltop Academy', grades: 'K - 10', distance: '3.1' },
+    {
+      rating: 8,
+      name: 'Happy Days School',
+      grades: 'Nursery - 5',
+      distance: '1.0',
     },
   ];
+  // near by college
+  export const nearByCollege = [
+    {
+      rating: 9,
+      name: 'Sunrise Junior College',
+      grades: '11 - 12',
+      distance: '1.4',
+    },
+    {
+      rating: 8,
+      name: 'Green Meadows Degree College',
+      grades: 'UG - PG',
+      distance: '2.1',
+    },
+    {
+      rating: 9,
+      name: 'City Science College',
+      grades: 'UG - PG',
+      distance: '2.9',
+    },
+    {
+      rating: 8,
+      name: 'Valley Arts and Commerce College',
+      grades: '11 - UG',
+      distance: '3.2',
+    },
+    {
+      rating: 7,
+      name: 'Metro Polytechnic College',
+      grades: 'Diploma - UG',
+      distance: '1.8',
+    },
+    {
+      rating: 9,
+      name: 'Riverside Law College',
+      grades: 'UG - PG',
+      distance: '2.5',
+    },
+    {
+      rating: 8,
+      name: 'National Engineering Institute',
+      grades: 'UG - PG',
+      distance: '3.0',
+    },
+    {
+      rating: 9,
+      name: 'Harmony College of Management',
+      grades: 'UG - PG',
+      distance: '2.6',
+    },
+    {
+      rating: 7,
+      name: 'Westend Medical College',
+      grades: 'UG - PG',
+      distance: '3.4',
+    },
+    {
+      rating: 8,
+      name: 'Bright Vision Junior College',
+      grades: '11 - 12',
+      distance: '1.6',
+    },
+  ];
+  export const nearByShoppingMall = [
+    { name: 'Sunflower Mall', distance: '0.8', walk: '15min', drive: '3min' },
+    {
+      name: 'Green Valley Plaza',
+      distance: '1.2',
+      walk: '18min',
+      drive: '4min',
+    },
+    { name: 'City Center Mall', distance: '2.0', walk: '25min', drive: '6min' },
+    {
+      name: 'Riverwalk Shopping Center',
+      distance: '1.5',
+      walk: '20min',
+      drive: '5min',
+    },
+    { name: 'Harmony Galleria', distance: '2.8', walk: '30min', drive: '7min' },
+    { name: 'Metro Square', distance: '1.0', walk: '12min', drive: '3min' },
+    {
+      name: 'Skyline Shopping Hub',
+      distance: '3.5',
+      walk: '40min',
+      drive: '10min',
+    },
+    {
+      name: 'Township Retail Park',
+      distance: '2.3',
+      walk: '27min',
+      drive: '6min',
+    },
+    {
+      name: 'Urban Street Mall',
+      distance: '1.8',
+      walk: '22min',
+      drive: '5min',
+    },
+    {
+      name: 'Lakeside Shopping Plaza',
+      distance: '2.1',
+      walk: '26min',
+      drive: '6min',
+    },
+  ];
+  export const transitSubway = [
+    {
+      name: 'Sunflower Subway Station',
+      distance: '0.8',
+      walk: '15min',
+      drive: '3min',
+    },
+    {
+      name: 'Downtown Metro Station',
+      distance: '1.1',
+      walk: '16min',
+      drive: '4min',
+    },
+    {
+      name: 'Green Line Station',
+      distance: '1.4',
+      walk: '19min',
+      drive: '5min',
+    },
+    {
+      name: 'Blue Valley Subway',
+      distance: '1.9',
+      walk: '23min',
+      drive: '6min',
+    },
+    {
+      name: 'Oakwood Subway Terminal',
+      distance: '2.2',
+      walk: '28min',
+      drive: '7min',
+    },
+    {
+      name: 'Central Circle Station',
+      distance: '2.5',
+      walk: '30min',
+      drive: '8min',
+    },
+    { name: 'Eastside Metro', distance: '1.3', walk: '17min', drive: '4min' },
+    {
+      name: 'Northern Link Station',
+      distance: '2.7',
+      walk: '33min',
+      drive: '8min',
+    },
+    { name: 'Hillcrest Subway', distance: '1.6', walk: '21min', drive: '5min' },
+    {
+      name: 'City Square Station',
+      distance: '3.0',
+      walk: '35min',
+      drive: '9min',
+    },
+  ];
+
+  export const commuterRail = [
+    {
+      name: 'Sunflower Commuter Station',
+      distance: '0.8',
+      walk: '15min',
+      drive: '3min',
+    },
+    {
+      name: 'Greenfield Rail Depot',
+      distance: '1.5',
+      walk: '22min',
+      drive: '5min',
+    },
+    {
+      name: 'Downtown Commuter Hub',
+      distance: '2.0',
+      walk: '28min',
+      drive: '6min',
+    },
+    {
+      name: 'Riverbend Station',
+      distance: '2.6',
+      walk: '32min',
+      drive: '8min',
+    },
+    {
+      name: 'Northway Commuter Point',
+      distance: '3.0',
+      walk: '37min',
+      drive: '9min',
+    },
+    {
+      name: 'Harmony Rail Junction',
+      distance: '2.2',
+      walk: '29min',
+      drive: '7min',
+    },
+    { name: 'East Terminal', distance: '1.3', walk: '18min', drive: '4min' },
+    {
+      name: 'Skyline Rail Station',
+      distance: '2.7',
+      walk: '33min',
+      drive: '8min',
+    },
+    {
+      name: 'Oakridge Rail Yard',
+      distance: '1.9',
+      walk: '24min',
+      drive: '6min',
+    },
+    {
+      name: 'Cityview Commuter Stop',
+      distance: '1.0',
+      walk: '14min',
+      drive: '3min',
+    },
+  ];
+
+  export const airports = [
+    {
+      name: 'Sunflower Airport',
+      distance: '0.8',
+      walk: '15min',
+      drive: '3min',
+    },
+    {
+      name: 'Green Hills Airstrip',
+      distance: '4.2',
+      walk: '—',
+      drive: '12min',
+    },
+    {
+      name: 'Valley International Airport',
+      distance: '6.5',
+      walk: '—',
+      drive: '18min',
+    },
+    {
+      name: 'Riverport Domestic Airport',
+      distance: '3.7',
+      walk: '—',
+      drive: '10min',
+    },
+    {
+      name: 'Skyline National Airport',
+      distance: '5.0',
+      walk: '—',
+      drive: '15min',
+    },
+    {
+      name: 'Harmony Aviation Terminal',
+      distance: '4.5',
+      walk: '—',
+      drive: '13min',
+    },
+    {
+      name: 'Downtown Heliport',
+      distance: '2.8',
+      walk: '35min',
+      drive: '8min',
+    },
+    {
+      name: 'Central City Airport',
+      distance: '7.1',
+      walk: '—',
+      drive: '20min',
+    },
+    { name: 'Eastview Airport', distance: '6.0', walk: '—', drive: '17min' },
+    {
+      name: 'Oakwood Regional Airport',
+      distance: '5.8',
+      walk: '—',
+      drive: '16min',
+    },
+  ];
+
+  //    review card
+  export const reviews = [
+    {
+        id: 1,
+      image: reviewOne,
+      name: 'Hanna',
+      date: 'January 2023',
+      comment:
+        'We had a delightful stay! We loved soaking in the tub, hiking in the area, and wine tasting in Truckee.',
+    },
+    {
+        id: 2,
+      image: reviewTwo,
+      name: 'Edelyne',
+      date: 'January 2023',
+      comment:
+        'We had a delightful stay! We loved soaking in the tub, hiking in the area, and wine tasting in Truckee.',
+    },
+    {
+        id: 3,
+      image: reviewThree,
+      name: 'Evgeniy',
+      date: 'January 2023',
+      comment:
+        'We had a delightful stay! We loved soaking in the tub, hiking in the area, and wine tasting in Truckee.',
+    },
+
+    {
+        id: 4,
+      image: reviewTwo,
+      name: 'Edelyne',
+      date: 'January 2023',
+      comment:
+        'We had a delightful stay! We loved soaking in the tub, hiking in the area, and wine tasting in Truckee.',
+    },
+
+    {
+        id: 5,
+      image: reviewOne,
+      name: 'Edelyne',
+      date: 'January 2023',
+      comment:
+        'We had a delightful stay! We loved soaking in the tub, hiking in the area, and wine tasting in Truckee.',
+    },
+
+    {
+        id: 6,
+      image: reviewThree,
+      name: 'Edelyne',
+      date: 'January 2023',
+      comment:
+        'We had a delightful stay! We loved soaking in the tub, hiking in the area, and wine tasting in Truckee.',
+    },
+  ];
+
+
+
+function PropertyDetails() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('Available');
   const [selectedOption, setSelectedOption] = useState('For Rent');
   const [availableActiveTab, setAvailableActiveTab] = useState('All');
@@ -181,7 +577,10 @@ function PropertyDetails() {
   const [showAllProperties, setShowAllProperties] = useState(false);
   //   today date select
   const today = new Date().toISOString().split('T')[0];
-  
+//    reviews
+const [isShowAllReviews, setIsShowAllReviews] = useState(false);
+const filteredReviews = isShowAllReviews ?
+reviews : reviews.slice(0,3);
   //   contact section form
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -193,7 +592,7 @@ function PropertyDetails() {
       message: '',
     },
   });
-//   feedback form data
+  //   feedback form data
   const [hovered, setHovered] = useState(null);
   const {
     register,
@@ -365,347 +764,19 @@ function PropertyDetails() {
     setSelectedOption(option);
     console.log('Selected option:', option); // Log the selected option
   };
-  //   near by school
-  const nearBySchool = [
-    {
-      rating: 9,
-      name: 'Sunflower Kindergarten School',
-      grades: 'K - 5',
-      distance: '0.8',
-    },
-    {
-      rating: 8,
-      name: 'Green Valley Elementary',
-      grades: '1 - 5',
-      distance: '1.2',
-    },
-    {
-      rating: 7,
-      name: 'Bright Future School',
-      grades: 'K - 8',
-      distance: '1.5',
-    },
-    {
-      rating: 9,
-      name: 'Oakridge International',
-      grades: '1 - 10',
-      distance: '2.0',
-    },
-    {
-      rating: 8,
-      name: 'Harmony Public School',
-      grades: 'K - 12',
-      distance: '2.3',
-    },
-    {
-      rating: 7,
-      name: 'Riverdale Primary School',
-      grades: 'K - 5',
-      distance: '0.9',
-    },
-    {
-      rating: 9,
-      name: 'Mount Litera Zee School',
-      grades: '1 - 12',
-      distance: '1.7',
-    },
-    {
-      rating: 8,
-      name: 'City Central School',
-      grades: '6 - 12',
-      distance: '2.8',
-    },
-    { rating: 9, name: 'Hilltop Academy', grades: 'K - 10', distance: '3.1' },
-    {
-      rating: 8,
-      name: 'Happy Days School',
-      grades: 'Nursery - 5',
-      distance: '1.0',
-    },
-  ];
-  // near by college
-  const nearByCollege = [
-    {
-      rating: 9,
-      name: 'Sunrise Junior College',
-      grades: '11 - 12',
-      distance: '1.4',
-    },
-    {
-      rating: 8,
-      name: 'Green Meadows Degree College',
-      grades: 'UG - PG',
-      distance: '2.1',
-    },
-    {
-      rating: 9,
-      name: 'City Science College',
-      grades: 'UG - PG',
-      distance: '2.9',
-    },
-    {
-      rating: 8,
-      name: 'Valley Arts and Commerce College',
-      grades: '11 - UG',
-      distance: '3.2',
-    },
-    {
-      rating: 7,
-      name: 'Metro Polytechnic College',
-      grades: 'Diploma - UG',
-      distance: '1.8',
-    },
-    {
-      rating: 9,
-      name: 'Riverside Law College',
-      grades: 'UG - PG',
-      distance: '2.5',
-    },
-    {
-      rating: 8,
-      name: 'National Engineering Institute',
-      grades: 'UG - PG',
-      distance: '3.0',
-    },
-    {
-      rating: 9,
-      name: 'Harmony College of Management',
-      grades: 'UG - PG',
-      distance: '2.6',
-    },
-    {
-      rating: 7,
-      name: 'Westend Medical College',
-      grades: 'UG - PG',
-      distance: '3.4',
-    },
-    {
-      rating: 8,
-      name: 'Bright Vision Junior College',
-      grades: '11 - 12',
-      distance: '1.6',
-    },
-  ];
-  const nearByShoppingMall = [
-    { name: 'Sunflower Mall', distance: '0.8', walk: '15min', drive: '3min' },
-    {
-      name: 'Green Valley Plaza',
-      distance: '1.2',
-      walk: '18min',
-      drive: '4min',
-    },
-    { name: 'City Center Mall', distance: '2.0', walk: '25min', drive: '6min' },
-    {
-      name: 'Riverwalk Shopping Center',
-      distance: '1.5',
-      walk: '20min',
-      drive: '5min',
-    },
-    { name: 'Harmony Galleria', distance: '2.8', walk: '30min', drive: '7min' },
-    { name: 'Metro Square', distance: '1.0', walk: '12min', drive: '3min' },
-    {
-      name: 'Skyline Shopping Hub',
-      distance: '3.5',
-      walk: '40min',
-      drive: '10min',
-    },
-    {
-      name: 'Township Retail Park',
-      distance: '2.3',
-      walk: '27min',
-      drive: '6min',
-    },
-    {
-      name: 'Urban Street Mall',
-      distance: '1.8',
-      walk: '22min',
-      drive: '5min',
-    },
-    {
-      name: 'Lakeside Shopping Plaza',
-      distance: '2.1',
-      walk: '26min',
-      drive: '6min',
-    },
-  ];
-  const transitSubway = [
-    {
-      name: 'Sunflower Subway Station',
-      distance: '0.8',
-      walk: '15min',
-      drive: '3min',
-    },
-    {
-      name: 'Downtown Metro Station',
-      distance: '1.1',
-      walk: '16min',
-      drive: '4min',
-    },
-    {
-      name: 'Green Line Station',
-      distance: '1.4',
-      walk: '19min',
-      drive: '5min',
-    },
-    {
-      name: 'Blue Valley Subway',
-      distance: '1.9',
-      walk: '23min',
-      drive: '6min',
-    },
-    {
-      name: 'Oakwood Subway Terminal',
-      distance: '2.2',
-      walk: '28min',
-      drive: '7min',
-    },
-    {
-      name: 'Central Circle Station',
-      distance: '2.5',
-      walk: '30min',
-      drive: '8min',
-    },
-    { name: 'Eastside Metro', distance: '1.3', walk: '17min', drive: '4min' },
-    {
-      name: 'Northern Link Station',
-      distance: '2.7',
-      walk: '33min',
-      drive: '8min',
-    },
-    { name: 'Hillcrest Subway', distance: '1.6', walk: '21min', drive: '5min' },
-    {
-      name: 'City Square Station',
-      distance: '3.0',
-      walk: '35min',
-      drive: '9min',
-    },
-  ];
-
-  const commuterRail = [
-    {
-      name: 'Sunflower Commuter Station',
-      distance: '0.8',
-      walk: '15min',
-      drive: '3min',
-    },
-    {
-      name: 'Greenfield Rail Depot',
-      distance: '1.5',
-      walk: '22min',
-      drive: '5min',
-    },
-    {
-      name: 'Downtown Commuter Hub',
-      distance: '2.0',
-      walk: '28min',
-      drive: '6min',
-    },
-    {
-      name: 'Riverbend Station',
-      distance: '2.6',
-      walk: '32min',
-      drive: '8min',
-    },
-    {
-      name: 'Northway Commuter Point',
-      distance: '3.0',
-      walk: '37min',
-      drive: '9min',
-    },
-    {
-      name: 'Harmony Rail Junction',
-      distance: '2.2',
-      walk: '29min',
-      drive: '7min',
-    },
-    { name: 'East Terminal', distance: '1.3', walk: '18min', drive: '4min' },
-    {
-      name: 'Skyline Rail Station',
-      distance: '2.7',
-      walk: '33min',
-      drive: '8min',
-    },
-    {
-      name: 'Oakridge Rail Yard',
-      distance: '1.9',
-      walk: '24min',
-      drive: '6min',
-    },
-    {
-      name: 'Cityview Commuter Stop',
-      distance: '1.0',
-      walk: '14min',
-      drive: '3min',
-    },
-  ];
-
-  const airports = [
-    {
-      name: 'Sunflower Airport',
-      distance: '0.8',
-      walk: '15min',
-      drive: '3min',
-    },
-    {
-      name: 'Green Hills Airstrip',
-      distance: '4.2',
-      walk: '—',
-      drive: '12min',
-    },
-    {
-      name: 'Valley International Airport',
-      distance: '6.5',
-      walk: '—',
-      drive: '18min',
-    },
-    {
-      name: 'Riverport Domestic Airport',
-      distance: '3.7',
-      walk: '—',
-      drive: '10min',
-    },
-    {
-      name: 'Skyline National Airport',
-      distance: '5.0',
-      walk: '—',
-      drive: '15min',
-    },
-    {
-      name: 'Harmony Aviation Terminal',
-      distance: '4.5',
-      walk: '—',
-      drive: '13min',
-    },
-    {
-      name: 'Downtown Heliport',
-      distance: '2.8',
-      walk: '35min',
-      drive: '8min',
-    },
-    {
-      name: 'Central City Airport',
-      distance: '7.1',
-      walk: '—',
-      drive: '20min',
-    },
-    { name: 'Eastview Airport', distance: '6.0', walk: '—', drive: '17min' },
-    {
-      name: 'Oakwood Regional Airport',
-      distance: '5.8',
-      walk: '—',
-      drive: '16min',
-    },
-  ];
+ 
 
   //   contact section from & feedback form
   function onSubmit(values) {
     console.log('Form values:', values);
     form.reset();
   }
-
   return (
     <div className="container mx-auto flex flex-col gap-6 py-12">
-      <div className="flex items-center gap-2">
+      <div
+        className="flex items-center gap-2 cursor-pointer transition-all duration-300"
+        onClick={() => navigate(-1)}
+      >
         <img src={backIcon} alt="icon" />
         <p className="text-[#10423E] text-base">Back to Search</p>
       </div>
@@ -775,7 +846,7 @@ function PropertyDetails() {
                 activeTab === tab
                   ? 'text-[#23938B] border-b-2 border-[#23938B] font-medium'
                   : 'text-[#8A8787] border-[#E6E6ED]'
-              }`}
+              } transition-all duration-300`}
             >
               {tab}
             </div>
@@ -848,7 +919,7 @@ function PropertyDetails() {
                             availableActiveTab === tab
                               ? 'bg-[#23938B] text-[#FFF]'
                               : 'text-[#8A8787] bg-transparent'
-                          } flex justify-center items-center py-3 border-x border-x-[#E9E9E9] text-base font-medium cursor-pointer`}
+                          } flex justify-center items-center py-3 border-x border-x-[#E9E9E9] text-base font-medium cursor-pointer transition-all duration-300`}
                         >
                           {tab}
                         </div>
@@ -861,7 +932,7 @@ function PropertyDetails() {
                     </div>
                     <div
                       onClick={() => setShowAllProperties(!showAllProperties)}
-                      className="text-[#23938B] bg-[#FFF] px-8 py-3 rounded-[60px] border border-[#23938B] hover:text-[#FFF] hover:bg-[#23938B] w-max cursor-pointer"
+                      className="text-[#23938B] bg-[#FFF] px-12 py-3 rounded-[60px] border border-[#23938B] hover:text-[#FFF] hover:bg-[#23938B] w-max cursor-pointer"
                     >
                       {showAllProperties ? 'See less' : 'See more'}
                     </div>
@@ -1046,7 +1117,7 @@ function PropertyDetails() {
                   <div className="flex items-center gap-2">
                     <img src={greenLocationIcon} alt="icon" />
                     <p className="text-[#10423E] text-xl font-medium">
-                      1800-1818 79th St
+                      {address}
                     </p>
                   </div>
                   <iframe
@@ -1299,7 +1370,7 @@ function PropertyDetails() {
                 <h1 className="text-[#10423E] border-b-2 border-b-[#10423E] w-max text-3xl font-semibold leading-[32px] py-6 px-8">
                   Reviews
                 </h1>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-6">
                   <div className="flex items-center gap-2">
                     <img src={filledRatingIcon} alt="icon" />
                     <p className="text-[#10423E] text-xl font-medium">
@@ -1310,10 +1381,10 @@ function PropertyDetails() {
                     onSubmit={handleSubmit(onSubmit)}
                     className="p-6 space-y-4 bg-white rounded-md"
                   >
-                    <div className="flex gap-20 max-w-4xl">
+                    <div className="flex items-center gap-20 max-w-4xl">
                       {/* Rating Section */}
                       <div className="flex flex-col gap-2">
-                        <h1 className="text-[#10423E] font-medium leading-[26px]">
+                        <h1 className="text-[#10423E] text-xl font-medium leading-[26px]">
                           Rating your service
                         </h1>
                         <div className="flex gap-2">
@@ -1363,12 +1434,25 @@ function PropertyDetails() {
                     </div>
 
                     <button
-                      type="submit"
+                      type="button"
                       className="mt-4 w-max flex mx-auto cursor-pointer bg-[#23938B] text-white py-2 px-4 rounded font-medium"
                     >
                       Submit Feedback
                     </button>
                   </form>
+                  <div className="grid grid-cols-2 gap-12">
+                    {filteredReviews.map((review) => (
+                      <ReviewCard review={review} />
+                    ))}
+                  </div>
+                  <div
+                    onClick={() => setIsShowAllReviews(!isShowAllReviews)}
+                    className="text-[#23938B] bg-[#FFF] text-base font-medium px-12 py-3 rounded-[60px] border border-[#23938B] hover:text-[#FFF] hover:bg-[#23938B] w-max cursor-pointer"
+                  >
+                    {isShowAllReviews
+                      ? 'See less'
+                      : `See ${reviews.length} reviews`}
+                  </div>
                 </div>
               </>
             )}
